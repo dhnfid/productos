@@ -12,6 +12,13 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const products_module_1 = require("./products/products.module");
 const typeorm_1 = require("@nestjs/typeorm");
+const titular_module_1 = require("./titular/titular.module");
+const localidad_module_1 = require("./localidad/localidad.module");
+const provincia_module_1 = require("./provincia/provincia.module");
+const turno_module_1 = require("./turno/turno.module");
+const marca_module_1 = require("./marca/marca.module");
+const modelo_module_1 = require("./modelo/modelo.module");
+const vehiculo_module_1 = require("./vehiculo/vehiculo.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -28,7 +35,7 @@ exports.AppModule = AppModule = __decorate([
                 autoLoadEntities: true,
                 synchronize: true,
             }),
-            products_module_1.ProductsModule,
+            products_module_1.ProductsModule, localidad_module_1.LocalidadModule, provincia_module_1.ProvinciaModule, titular_module_1.TitularModule, turno_module_1.TurnoModule, marca_module_1.MarcaModule, modelo_module_1.ModeloModule, vehiculo_module_1.VehiculoModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
