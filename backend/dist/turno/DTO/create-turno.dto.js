@@ -12,17 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateTurnoDto = void 0;
 const class_validator_1 = require("class-validator");
 class CreateTurnoDto {
-    'fecha';
     'km';
     'vehiculoId';
     'titularId';
 }
 exports.CreateTurnoDto = CreateTurnoDto;
-__decorate([
-    (0, class_validator_1.IsDateString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateTurnoDto.prototype, "fecha", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsPositive)(),

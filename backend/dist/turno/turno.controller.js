@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const turno_service_1 = require("./turno.service");
 const create_turno_dto_1 = require("./DTO/create-turno.dto");
 const update_turno_dto_1 = require("./DTO/update-turno.dto");
+const common_2 = require("@nestjs/common");
 let TurnoController = class TurnoController {
     turnoService;
     constructor(turnoService) {
@@ -75,6 +76,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TurnoController.prototype, "remove", null);
 exports.TurnoController = TurnoController = __decorate([
+    (0, common_1.Controller)('turno'),
+    (0, common_2.UseInterceptors)(common_2.ClassSerializerInterceptor),
     (0, common_1.Controller)('turno'),
     __metadata("design:paramtypes", [turno_service_1.TurnoService])
 ], TurnoController);

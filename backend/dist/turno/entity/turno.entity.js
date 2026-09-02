@@ -13,6 +13,12 @@ exports.Turno = void 0;
 const vehiculo_entity_1 = require("../../vehiculo/entity/vehiculo.entity");
 const typeorm_1 = require("typeorm");
 const titular_entity_1 = require("../../titular/entity/titular.entity");
+const class_transformer_1 = require("class-transformer");
+const dayjs = require("dayjs");
+const utc = require("dayjs/plugin/utc");
+const timezone = require("dayjs/plugin/timezone");
+dayjs.extend(utc);
+dayjs.extend(timezone);
 let Turno = class Turno {
     'id';
     'fecha';
@@ -28,7 +34,8 @@ __decorate([
     __metadata("design:type", String)
 ], Turno.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp' }),
+    (0, typeorm_1.Column)({ type: 'timestamp with time zone' }),
+    (0, class_transformer_1.Transform)(({ value }) => dayjs(value).tz('America/Argentina/Buenos_Aires').format()),
     __metadata("design:type", Date)
 ], Turno.prototype, "fecha", void 0);
 __decorate([

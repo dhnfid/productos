@@ -44,10 +44,10 @@ let TurnoService = class TurnoService {
         return turno;
     }
     async create(createTurnoDto) {
-        const { vehiculoId, titularId, fecha, ...datosTurno } = createTurnoDto;
+        const { vehiculoId, titularId, ...datosTurno } = createTurnoDto;
         const nuevoTurno = this.turnoRepository.create({
             ...datosTurno,
-            fecha: new Date(fecha),
+            fecha: new Date(),
             vehiculos: { id: vehiculoId },
             titular: { id: titularId },
         });
@@ -55,10 +55,8 @@ let TurnoService = class TurnoService {
     }
     async update(id, updateTurnoDto) {
         const turno = await this.findOne(id);
-        const { vehiculoId, titularId, fecha, ...datosActualizar } = updateTurnoDto;
+        const { vehiculoId, titularId, ...datosActualizar } = updateTurnoDto;
         this.turnoRepository.merge(turno, datosActualizar);
-        if (fecha)
-            turno.fecha = new Date(fecha);
         if (vehiculoId)
             turno.vehiculos = { id: vehiculoId };
         if (titularId)

@@ -3,7 +3,11 @@ import { TurnoService } from './turno.service';
 import { CreateTurnoDto } from './DTO/create-turno.dto';
 import { UpdateTurnoDto } from './DTO/update-turno.dto';
 import { Turno } from './entity/turno.entity';
+import { UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
 
+
+@Controller('turno')
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('turno')
 export class TurnoController {
   constructor(private readonly turnoService: TurnoService) {}
