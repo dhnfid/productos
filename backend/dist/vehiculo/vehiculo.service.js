@@ -24,13 +24,13 @@ let VehiculoService = class VehiculoService {
     }
     async findAll() {
         return await this.vehiculoRepository.find({
-            relations: { modelo: true, titular: true },
+            relations: { modelo: { marca: true }, titular: true },
         });
     }
     async findOne(id) {
         const vehiculo = await this.vehiculoRepository.findOne({
             where: { id },
-            relations: { modelo: true, titular: true, turno: true },
+            relations: { modelo: { marca: true }, titular: true, turno: true },
         });
         if (!vehiculo) {
             throw new common_1.NotFoundException(`Vehículo con id ${id} no encontrado`);

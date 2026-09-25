@@ -12,8 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Turno = void 0;
 const vehiculo_entity_1 = require("../../vehiculo/entity/vehiculo.entity");
 const typeorm_1 = require("typeorm");
-const titular_entity_1 = require("../../titular/entity/titular.entity");
-const class_transformer_1 = require("class-transformer");
 const dayjs = require("dayjs");
 const utc = require("dayjs/plugin/utc");
 const timezone = require("dayjs/plugin/timezone");
@@ -24,7 +22,6 @@ let Turno = class Turno {
     'fecha';
     'km';
     'vehiculos';
-    'titular';
     'descripcion';
     'precio';
 };
@@ -34,9 +31,8 @@ __decorate([
     __metadata("design:type", String)
 ], Turno.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp with time zone' }),
-    (0, class_transformer_1.Transform)(({ value }) => dayjs(value).tz('America/Argentina/Buenos_Aires').format()),
-    __metadata("design:type", Date)
+    (0, typeorm_1.Column)({ type: 'date' }),
+    __metadata("design:type", String)
 ], Turno.prototype, "fecha", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
@@ -47,11 +43,6 @@ __decorate([
     (0, typeorm_1.JoinColumn)({ name: 'vehiculo_id' }),
     __metadata("design:type", vehiculo_entity_1.Vehiculo)
 ], Turno.prototype, "vehiculos", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => titular_entity_1.Titular, (titular) => titular.turnos),
-    (0, typeorm_1.JoinColumn)({ name: 'titular_id' }),
-    __metadata("design:type", titular_entity_1.Titular)
-], Turno.prototype, "titular", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)

@@ -1,0 +1,28 @@
+<table class="tabla-turnos">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Kilómetros</th>
+      <th>Descripción</th>
+      <th>Precio</th>
+      <th>Vehículo (Patente)</th>
+      <th>Titular</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (turno of turnos; track turno.id) {
+      <tr>
+        <td>{{ turno.fecha }}</td>
+        <td>{{ turno.km }}</td>
+        <td>{{ turno.descripcion }}</td>
+        <td>${{ turno.precio }}</td>
+        <td>{{ turno.vehiculos?.patente || 'Vehículo no especificado' }}</td>
+        <td>{{ turno.vehiculos?.titular?.nombre || 'Titular no especificado' }}</td>
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="6">No hay turnos disponibles.</td>
+      </tr>
+    }
+  </tbody>
+</table>

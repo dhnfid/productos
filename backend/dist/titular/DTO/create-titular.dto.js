@@ -14,9 +14,7 @@ const class_validator_1 = require("class-validator");
 class CreateTitularDto {
     'nombre';
     'telefono';
-    'numDocumento';
     'localidadId';
-    'provinciaId';
 }
 exports.CreateTitularDto = CreateTitularDto;
 __decorate([
@@ -26,20 +24,11 @@ __decorate([
 ], CreateTitularDto.prototype, "nombre", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], CreateTitularDto.prototype, "telefono", void 0);
-__decorate([
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
-], CreateTitularDto.prototype, "numDocumento", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateTitularDto.prototype, "localidadId", void 0);
-__decorate([
-    (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateTitularDto.prototype, "provinciaId", void 0);
 //# sourceMappingURL=create-titular.dto.js.map

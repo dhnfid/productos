@@ -1,17 +1,25 @@
-import { IsDateString, IsNotEmpty, IsNumber, IsPositive, IsUUID } from 'class-validator';
+import { IsDateString, IsNotEmpty, IsNumber, IsPositive, IsString, IsUUID } from 'class-validator';
 
 export class CreateTurnoDto {
+
+  @IsNotEmpty()
+  @IsDateString()
+  'fecha': string;
 
   @IsNumber()
   @IsPositive()
   'km': number;
 
-  @IsUUID()
   @IsNotEmpty()
-  'vehiculoId': string;
+  @IsString()
+  'descripcion': string;
+
+  @IsNumber()
+  @IsPositive()
+  'precio': number;
 
   @IsUUID()
   @IsNotEmpty()
-  'titularId': string;
+  'vehiculoId': string;
 
 }

@@ -1,6 +1,6 @@
-import { Titular } from "../../titular/entity/titular.entity";
+import { Localidad } from "../../localidad/entity/localidad.entity";
 export declare class Provincia {
     'id': string;
     'nombre': string;
-    'titulares': Titular[];
+    'localidades': Localidad[];
 }

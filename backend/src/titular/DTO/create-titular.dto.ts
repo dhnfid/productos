@@ -6,16 +6,10 @@ export class CreateTitularDto {
   'nombre': string;
 
   @IsNumber()
-  'telefono': number;
+  'telefono': string;
 
-  @IsNumber()
-  'numDocumento': number;
 
   @IsUUID()
   @IsNotEmpty()
   'localidadId': string;
-
-  @IsUUID()
-  @IsNotEmpty()
-  'provinciaId': string;
 }

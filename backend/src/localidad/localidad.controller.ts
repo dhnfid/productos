@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, ParseUUIDPipe, UseGuards } from '@nestjs/common';
 import { LocalidadService } from './localidad.service';
 import { CreateLocalidadDto } from './DTO/create-localidad.dto';
 import { UpdateLocalidadDto } from './DTO/update-localidad.dto';
 import { Localidad } from './entity/localidad.entity';
+import { AuthGuard } from 'node_modules/@nestjs/passport/dist/auth.guard';
 
+// @UseGuards(AuthGuard('jwt'))
 @Controller('localidad')
 export class LocalidadController {
   constructor(private readonly localidadService: LocalidadService) {}

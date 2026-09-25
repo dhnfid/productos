@@ -1,0 +1,65 @@
+/* Espaciado del contenedor */
+.container {
+  padding: 20px;
+}
+
+.search-bar {
+  padding: 8px 12px;
+  margin-bottom: 20px;
+  width: 320px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Formulario con espacio entre inputs */
+.form-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.form-card input, 
+.form-card select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background-color: #c9302c;
+}
+
+/* TABLA: Estilos básicos */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: 12px 20px;
+  text-align: left;
+}
+
+.col-sel {
+  width: 50px;
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* Fila seleccionada */
+tr.selected {
+  background-color: rgba(255, 255, 255, 0.6);
+}

@@ -1,9 +1,12 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, ParseUUIDPipe, UseGuards } from '@nestjs/common';
 import { ProvinciaService } from './provincia.service';
 import { CreateProvinciaDto } from './DTO/create-provincia.dto';
 import { UpdateProvinciaDto } from './DTO/update-provincia.dto';
 import { Provincia } from './entity/provincia.entity';
+import { AuthGuard } from 'node_modules/@nestjs/passport/dist/auth.guard';
 
+
+// @UseGuards(AuthGuard('jwt'))
 @Controller('provincia')
 export class ProvinciaController {
   constructor(private readonly provinciaService: ProvinciaService) {}

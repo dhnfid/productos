@@ -25,8 +25,7 @@ let TurnoService = class TurnoService {
     async findAll() {
         return await this.turnoRepository.find({
             relations: {
-                vehiculos: true,
-                titular: true
+                vehiculos: { titular: true },
             },
         });
     }
@@ -35,7 +34,6 @@ let TurnoService = class TurnoService {
             where: { id },
             relations: {
                 vehiculos: true,
-                titular: true
             },
         });
         if (!turno) {
@@ -44,23 +42,19 @@ let TurnoService = class TurnoService {
         return turno;
     }
     async create(createTurnoDto) {
-        const { vehiculoId, titularId, ...datosTurno } = createTurnoDto;
+        const { vehiculoId, ...datosTurno } = createTurnoDto;
         const nuevoTurno = this.turnoRepository.create({
             ...datosTurno,
-            fecha: new Date(),
             vehiculos: { id: vehiculoId },
-            titular: { id: titularId },
         });
         return await this.turnoRepository.save(nuevoTurno);
     }
     async update(id, updateTurnoDto) {
         const turno = await this.findOne(id);
-        const { vehiculoId, titularId, ...datosActualizar } = updateTurnoDto;
+        const { vehiculoId, ...datosActualizar } = updateTurnoDto;
         this.turnoRepository.merge(turno, datosActualizar);
         if (vehiculoId)
             turno.vehiculos = { id: vehiculoId };
-        if (titularId)
-            turno.titular = { id: titularId };
         return await this.turnoRepository.save(turno);
     }
     async remove(id) {

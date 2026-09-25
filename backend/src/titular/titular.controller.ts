@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, ParseUUIDPipe, UseGuards } from '@nestjs/common';
 import { TitularService } from './titular.service';
 import { CreateTitularDto } from './DTO/create-titular.dto';
 import { UpdateTitularDto } from './DTO/update-titular.dto';
 import { Titular } from './entity/titular.entity';
+import { AuthGuard } from '@nestjs/passport';
 
+// @UseGuards(AuthGuard('jwt'))
 @Controller('titular')
 export class TitularController {
   constructor(private readonly titularService: TitularService) {}

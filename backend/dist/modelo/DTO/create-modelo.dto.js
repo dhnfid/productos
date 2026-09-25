@@ -14,6 +14,7 @@ const class_validator_1 = require("class-validator");
 class CreateModeloDto {
     'nombre';
     'marcaId';
+    'fallasHabituales';
 }
 exports.CreateModeloDto = CreateModeloDto;
 __decorate([
@@ -26,4 +27,8 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateModeloDto.prototype, "marcaId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateModeloDto.prototype, "fallasHabituales", void 0);
 //# sourceMappingURL=create-modelo.dto.js.map

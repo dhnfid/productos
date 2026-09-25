@@ -14,12 +14,12 @@ export class LocalidadService {
 
   // GET ALL
   async findAll(): Promise<Localidad[]> {
-    return await this.localidadRepository.find();
+    return await this.localidadRepository.find({relations: {provincia : true}});
   }
 
   // GET BY ID
   async findOne(id: string): Promise<Localidad> {
-    const localidad = await this.localidadRepository.findOne({ where: { id } });
+    const localidad = await this.localidadRepository.findOne({ where: { id }, relations: { provincia: true } });
     if (!localidad) {
       throw new NotFoundException(`Localidad con id ${id} no encontrada`);
     }
@@ -28,14 +28,25 @@ export class LocalidadService {
 
   // POST (CREATE)
   async create(createLocalidadDto: CreateLocalidadDto): Promise<Localidad> {
-    const nuevaLocalidad = this.localidadRepository.create(createLocalidadDto);
+   const { provinciaId, ...datosLocalidad } = createLocalidadDto;
+
+    const nuevaLocalidad = this.localidadRepository.create({
+      ...datosLocalidad,
+      provincia: { id: provinciaId } as any,
+    });
+
     return await this.localidadRepository.save(nuevaLocalidad);
   }
 
   // PUT (UPDATE)
   async update(id: string, updateLocalidadDto: UpdateLocalidadDto): Promise<Localidad> {
     const localidad = await this.findOne(id);
-    this.localidadRepository.merge(localidad, updateLocalidadDto);
+    const { provinciaId, ...datosActualizar } = updateLocalidadDto;
+
+    this.localidadRepository.merge(localidad, datosActualizar);
+
+    if (provinciaId) localidad.provincia = { id: provinciaId } as any;
+
     return await this.localidadRepository.save(localidad);
   }
 

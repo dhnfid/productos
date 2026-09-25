@@ -12,24 +12,36 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateTurnoDto = void 0;
 const class_validator_1 = require("class-validator");
 class CreateTurnoDto {
+    'fecha';
     'km';
+    'descripcion';
+    'precio';
     'vehiculoId';
-    'titularId';
 }
 exports.CreateTurnoDto = CreateTurnoDto;
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateTurnoDto.prototype, "fecha", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsPositive)(),
     __metadata("design:type", Number)
 ], CreateTurnoDto.prototype, "km", void 0);
 __decorate([
-    (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateTurnoDto.prototype, "vehiculoId", void 0);
+], CreateTurnoDto.prototype, "descripcion", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsPositive)(),
+    __metadata("design:type", Number)
+], CreateTurnoDto.prototype, "precio", void 0);
 __decorate([
     (0, class_validator_1.IsUUID)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateTurnoDto.prototype, "titularId", void 0);
+], CreateTurnoDto.prototype, "vehiculoId", void 0);
 //# sourceMappingURL=create-turno.dto.js.map

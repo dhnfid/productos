@@ -13,6 +13,7 @@ exports.CreateLocalidadDto = void 0;
 const class_validator_1 = require("class-validator");
 class CreateLocalidadDto {
     'nombre';
+    'provinciaId';
 }
 exports.CreateLocalidadDto = CreateLocalidadDto;
 __decorate([
@@ -20,4 +21,9 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateLocalidadDto.prototype, "nombre", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateLocalidadDto.prototype, "provinciaId", void 0);
 //# sourceMappingURL=create-localidad.dto.js.map

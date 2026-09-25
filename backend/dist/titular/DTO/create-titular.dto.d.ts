@@ -1,7 +1,5 @@
 export declare class CreateTitularDto {
     'nombre': string;
-    'telefono': number;
-    'numDocumento': number;
+    'telefono': string;
     'localidadId': string;
-    'provinciaId': string;
 }

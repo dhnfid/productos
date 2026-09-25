@@ -23,22 +23,29 @@ let LocalidadService = class LocalidadService {
         this.localidadRepository = localidadRepository;
     }
     async findAll() {
-        return await this.localidadRepository.find();
+        return await this.localidadRepository.find({ relations: { provincia: true } });
     }
     async findOne(id) {
-        const localidad = await this.localidadRepository.findOne({ where: { id } });
+        const localidad = await this.localidadRepository.findOne({ where: { id }, relations: { provincia: true } });
         if (!localidad) {
             throw new common_1.NotFoundException(`Localidad con id ${id} no encontrada`);
         }
         return localidad;
     }
     async create(createLocalidadDto) {
-        const nuevaLocalidad = this.localidadRepository.create(createLocalidadDto);
+        const { provinciaId, ...datosLocalidad } = createLocalidadDto;
+        const nuevaLocalidad = this.localidadRepository.create({
+            ...datosLocalidad,
+            provincia: { id: provinciaId },
+        });
         return await this.localidadRepository.save(nuevaLocalidad);
     }
     async update(id, updateLocalidadDto) {
         const localidad = await this.findOne(id);
-        this.localidadRepository.merge(localidad, updateLocalidadDto);
+        const { provinciaId, ...datosActualizar } = updateLocalidadDto;
+        this.localidadRepository.merge(localidad, datosActualizar);
+        if (provinciaId)
+            localidad.provincia = { id: provinciaId };
         return await this.localidadRepository.save(localidad);
     }
     async remove(id) {

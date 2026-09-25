@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Vehiculo } from './entity/vehiculo.entity';
 import { CreateVehiculoDto } from './DTO/create-vehiculo.dto';
 import { UpdateVehiculoDto } from './DTO/update-vehiculo.dto';
+import { Marca } from 'src/marca/entity/marca.entity';
 
 @Injectable()
 export class VehiculoService {
@@ -15,7 +16,7 @@ export class VehiculoService {
   // GET ALL (trae las relaciones con Modelo y Titular)
   async findAll(): Promise<Vehiculo[]> {
     return await this.vehiculoRepository.find({
-      relations: {modelo : true, titular : true},
+      relations: {modelo : {marca : true}, titular : true},
     });
   }
 
@@ -23,7 +24,7 @@ export class VehiculoService {
   async findOne(id: string): Promise<Vehiculo> {
     const vehiculo = await this.vehiculoRepository.findOne({
       where: { id },
-      relations: {modelo : true, titular : true, turno : true},
+      relations: {modelo : {marca : true}, titular : true, turno : true},
     });
 
     if (!vehiculo) {

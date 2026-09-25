@@ -1,9 +1,12 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, ParseUUIDPipe, UseGuards } from '@nestjs/common';
 import { VehiculoService } from './vehiculo.service';
 import { CreateVehiculoDto } from './DTO/create-vehiculo.dto';
 import { UpdateVehiculoDto } from './DTO/update-vehiculo.dto';
 import { Vehiculo } from './entity/vehiculo.entity';
+import { AuthGuard } from 'node_modules/@nestjs/passport/dist/auth.guard';
 
+
+// @UseGuards(AuthGuard('jwt'))
 @Controller('vehiculo')
 export class VehiculoController {
   constructor(private readonly vehiculoService: VehiculoService) {}

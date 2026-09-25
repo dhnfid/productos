@@ -12,17 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Titular = void 0;
 const typeorm_1 = require("typeorm");
 const localidad_entity_1 = require("../../localidad/entity/localidad.entity");
-const provincia_entity_1 = require("../../provincia/entity/provincia.entity");
-const turno_entity_1 = require("../../turno/entity/turno.entity");
 const vehiculo_entity_1 = require("../../vehiculo/entity/vehiculo.entity");
 let Titular = class Titular {
     'id';
     'nombre';
     'telefono';
-    'numDocumento';
     'localidad';
-    'provincia';
-    'turnos';
     'vehiculos';
 };
 exports.Titular = Titular;
@@ -36,26 +31,13 @@ __decorate([
 ], Titular.prototype, "nombre", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Titular.prototype, "telefono", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Titular.prototype, "numDocumento", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => localidad_entity_1.Localidad, (localidad) => localidad.titulares),
     (0, typeorm_1.JoinColumn)({ name: 'localidad_id' }),
     __metadata("design:type", localidad_entity_1.Localidad)
 ], Titular.prototype, "localidad", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => provincia_entity_1.Provincia, (provincia) => provincia.titulares),
-    (0, typeorm_1.JoinColumn)({ name: 'provincia_id' }),
-    __metadata("design:type", provincia_entity_1.Provincia)
-], Titular.prototype, "provincia", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => turno_entity_1.Turno, (turno) => turno.titular),
-    __metadata("design:type", Array)
-], Titular.prototype, "turnos", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => vehiculo_entity_1.Vehiculo, (vehiculo) => vehiculo.titular),
     __metadata("design:type", Array)

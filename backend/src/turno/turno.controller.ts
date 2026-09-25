@@ -1,11 +1,13 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, ParseUUIDPipe, UseGuards } from '@nestjs/common';
 import { TurnoService } from './turno.service';
 import { CreateTurnoDto } from './DTO/create-turno.dto';
 import { UpdateTurnoDto } from './DTO/update-turno.dto';
 import { Turno } from './entity/turno.entity';
 import { UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
+import { AuthGuard } from 'node_modules/@nestjs/passport/dist/auth.guard';
 
 
+// @UseGuards(AuthGuard('jwt'))
 @Controller('turno')
 @UseInterceptors(ClassSerializerInterceptor)
 @Controller('turno')

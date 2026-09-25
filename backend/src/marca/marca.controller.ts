@@ -3,7 +3,10 @@ import { MarcaService } from './marca.service';
 import { CreateMarcaDto } from './DTO/create-marca.dto';
 import { UpdateMarcaDto } from './DTO/update-marca.dto';
 import { Marca } from './entity/marca.entity';
+import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'node_modules/@nestjs/passport/dist/auth.guard';
 
+// @UseGuards(AuthGuard('jwt'))
 @Controller('marca')
 export class MarcaController {
   constructor(private readonly marcaService: MarcaService) {}

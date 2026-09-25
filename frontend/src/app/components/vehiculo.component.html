@@ -1,0 +1,22 @@
+<table class="tabla-vehiculos">
+  <thead>
+    <tr>
+      <th>Patente</th>
+      <th>Modelo</th>
+      <th>Titular</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (vehiculo of vehiculos; track vehiculo.id) {
+      <tr>
+        <td>{{ vehiculo.patente }}</td>
+        <td>{{ vehiculo.modelo?.nombre || 'Modelo no especificado' }}</td>
+        <td>{{ vehiculo.titular?.nombre || 'Titular no especificado' }}</td>
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="3">No hay vehículos disponibles.</td>
+      </tr>
+    }
+  </tbody>
+</table>

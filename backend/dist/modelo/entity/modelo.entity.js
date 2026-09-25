@@ -13,11 +13,14 @@ exports.Modelo = void 0;
 const typeorm_1 = require("typeorm");
 const vehiculo_entity_1 = require("../../vehiculo/entity/vehiculo.entity");
 const marca_entity_1 = require("../../marca/entity/marca.entity");
+const esquemaElectrico_entity_1 = require("../../esquemaElectrico/entity/esquemaElectrico.entity");
 let Modelo = class Modelo {
     'id';
     'nombre';
     'marca';
     'vehiculos';
+    'fallasHabituales';
+    'esquemasElectricos';
 };
 exports.Modelo = Modelo;
 __decorate([
@@ -37,6 +40,14 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => vehiculo_entity_1.Vehiculo, (vehiculo) => vehiculo.modelo),
     __metadata("design:type", Array)
 ], Modelo.prototype, "vehiculos", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Modelo.prototype, "fallasHabituales", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => esquemaElectrico_entity_1.EsquemaElectrico, (esquemaElectrico) => esquemaElectrico.modelo),
+    __metadata("design:type", Array)
+], Modelo.prototype, "esquemasElectricos", void 0);
 exports.Modelo = Modelo = __decorate([
     (0, typeorm_1.Entity)("Modelo")
 ], Modelo);

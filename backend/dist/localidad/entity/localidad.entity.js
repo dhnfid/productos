@@ -12,9 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Localidad = void 0;
 const typeorm_1 = require("typeorm");
 const titular_entity_1 = require("../../titular/entity/titular.entity");
+const provincia_entity_1 = require("../../provincia/entity/provincia.entity");
 let Localidad = class Localidad {
     'id';
     'nombre';
+    'provincia';
     'titulares';
 };
 exports.Localidad = Localidad;
@@ -26,6 +28,11 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Localidad.prototype, "nombre", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => provincia_entity_1.Provincia, (provincia) => provincia.localidades),
+    (0, typeorm_1.JoinColumn)({ name: 'provincia_id' }),
+    __metadata("design:type", provincia_entity_1.Provincia)
+], Localidad.prototype, "provincia", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => titular_entity_1.Titular, (titular) => titular.localidad),
     __metadata("design:type", Array)

@@ -11,11 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Provincia = void 0;
 const typeorm_1 = require("typeorm");
-const titular_entity_1 = require("../../titular/entity/titular.entity");
+const localidad_entity_1 = require("../../localidad/entity/localidad.entity");
 let Provincia = class Provincia {
     'id';
     'nombre';
-    'titulares';
+    'localidades';
 };
 exports.Provincia = Provincia;
 __decorate([
@@ -27,9 +27,9 @@ __decorate([
     __metadata("design:type", String)
 ], Provincia.prototype, "nombre", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => titular_entity_1.Titular, (titular) => titular.provincia),
+    (0, typeorm_1.OneToMany)(() => localidad_entity_1.Localidad, (localidad) => localidad.provincia),
     __metadata("design:type", Array)
-], Provincia.prototype, "titulares", void 0);
+], Provincia.prototype, "localidades", void 0);
 exports.Provincia = Provincia = __decorate([
     (0, typeorm_1.Entity)("Provincia")
 ], Provincia);

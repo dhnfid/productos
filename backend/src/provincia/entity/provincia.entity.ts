@@ -1,5 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { Titular } from "src/titular/entity/titular.entity";
+import { Localidad } from "src/localidad/entity/localidad.entity";
 
 @Entity("Provincia")
 export class Provincia{
@@ -9,6 +10,6 @@ export class Provincia{
     @Column()
     'nombre' : string
 
-    @OneToMany(() => Titular, (titular) => titular.provincia)
-    'titulares': Titular[];
+    @OneToMany(() => Localidad, (localidad) => localidad.provincia)
+    'localidades': Localidad[];
 }

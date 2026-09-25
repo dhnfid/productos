@@ -8,4 +8,5 @@ export class CreateModeloDto {
   @IsUUID()
   @IsNotEmpty()
   'marcaId': string;
+
 }

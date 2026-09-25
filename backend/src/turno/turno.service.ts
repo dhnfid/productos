@@ -16,8 +16,7 @@ export class TurnoService {
   async findAll(): Promise<Turno[]> {
     return await this.turnoRepository.find({
       relations: {
-        vehiculos: true,
-        titular: true
+        vehiculos: {titular: true},
       },
     });
   }
@@ -28,7 +27,6 @@ export class TurnoService {
       where: { id },
       relations: {
         vehiculos: true,
-        titular: true
       },
     });
 
@@ -40,13 +38,11 @@ export class TurnoService {
 
   // POST (CREATE)
   async create(createTurnoDto: CreateTurnoDto): Promise<Turno> {
-    const { vehiculoId, titularId, ...datosTurno } = createTurnoDto;
+    const { vehiculoId, ...datosTurno } = createTurnoDto;
 
     const nuevoTurno = this.turnoRepository.create({
       ...datosTurno,
-      fecha: new Date(),
       vehiculos: { id: vehiculoId },
-      titular: { id: titularId },
     });
 
     return await this.turnoRepository.save(nuevoTurno);
@@ -55,12 +51,11 @@ export class TurnoService {
   // PUT (UPDATE)
   async update(id: string, updateTurnoDto: UpdateTurnoDto): Promise<Turno> {
     const turno = await this.findOne(id);
-    const { vehiculoId, titularId, ...datosActualizar } = updateTurnoDto;
+    const { vehiculoId, ...datosActualizar } = updateTurnoDto;
 
     this.turnoRepository.merge(turno, datosActualizar);
 
     if (vehiculoId) turno.vehiculos = { id: vehiculoId } as any;
-    if (titularId) turno.titular = { id: titularId } as any;
 
     return await this.turnoRepository.save(turno);
   }

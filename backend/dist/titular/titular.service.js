@@ -24,17 +24,14 @@ let TitularService = class TitularService {
     }
     async findAll() {
         return await this.titularRepository.find({
-            relations: { localidad: true, provincia: true },
+            relations: { localidad: { provincia: true } },
         });
     }
     async findOne(id) {
         const titular = await this.titularRepository.findOne({
             where: { id },
             relations: {
-                localidad: true,
-                provincia: true,
-                vehiculos: true,
-                turnos: true,
+                localidad: { provincia: true },
             },
         });
         if (!titular) {
@@ -43,22 +40,19 @@ let TitularService = class TitularService {
         return titular;
     }
     async create(createTitularDto) {
-        const { localidadId, provinciaId, ...datosTitular } = createTitularDto;
+        const { localidadId, ...datosTitular } = createTitularDto;
         const nuevoTitular = this.titularRepository.create({
             ...datosTitular,
             localidad: { id: localidadId },
-            provincia: { id: provinciaId },
         });
         return await this.titularRepository.save(nuevoTitular);
     }
     async update(id, updateTitularDto) {
         const titular = await this.findOne(id);
-        const { localidadId, provinciaId, ...datosActualizar } = updateTitularDto;
+        const { localidadId, ...datosActualizar } = updateTitularDto;
         this.titularRepository.merge(titular, datosActualizar);
         if (localidadId)
             titular.localidad = { id: localidadId };
-        if (provinciaId)
-            titular.provincia = { id: provinciaId };
         return await this.titularRepository.save(titular);
     }
     async remove(id) {

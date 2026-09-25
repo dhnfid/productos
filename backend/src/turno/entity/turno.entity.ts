@@ -14,9 +14,8 @@ export class Turno{
     @PrimaryGeneratedColumn("uuid")
     'id' : string
 
-    @Column({ type: 'timestamp with time zone' })
-    @Transform(({ value }) => dayjs(value).tz('America/Argentina/Buenos_Aires').format())
-    'fecha': Date;
+    @Column({ type: 'date' })
+    'fecha': string;
 
     @Column()
     'km' : number
@@ -24,10 +23,6 @@ export class Turno{
     @ManyToOne(() => Vehiculo, (vehiculo) => vehiculo.turno)
     @JoinColumn({ name: 'vehiculo_id' }) 
     'vehiculos': Vehiculo;
-
-    @ManyToOne(() => Titular, (titular) => titular.turnos)
-    @JoinColumn({ name: 'titular_id' }) 
-    'titular': Titular;
 
     @Column()
     'descripcion' : string
